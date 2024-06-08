@@ -41,7 +41,7 @@
                 </tr>
             </tbody>
         </table>
-        <div v-else>
+        <div v-else-if="this.getRolesAndPermissions.roles[0] == 'doctor'">
             <h4>Seems empty here. Let's wait for the patients to create an appointment</h4>
         </div>
     </div>

@@ -131,6 +131,11 @@ export default {
     },
 
     async beforeMount() {
+        // this means that current logged in user have no permission to edit patients
+        if(this.getRolesAndPermissions.permissions.indexOf('edit patients') == -1){
+            this.$router.push('/dashboard');
+            return;
+        }
         const response = await axios.get('/api/patients/' + this.$route.params.id);
         let patient = response.data.patient;
         this.name = patient.name;

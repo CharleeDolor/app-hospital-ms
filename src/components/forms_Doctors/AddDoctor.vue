@@ -67,6 +67,20 @@ export default {
     components: {
         NavBar
     },
+    
+    computed: {
+        getRolesAndPermissions() {
+            return this.$store.getters.getRolesAndPermissions
+        }
+    },
+
+    beforeMount(){
+        // this means that current logged in user have no permission to create doctors
+        if(this.getRolesAndPermissions.permissions.indexOf('create doctors') == -1){
+            this.$router.push('/dashboard');
+            return;
+        }
+    },
 
     data() {
         return {

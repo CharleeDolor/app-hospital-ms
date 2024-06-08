@@ -31,6 +31,18 @@ export default {
     computed: {
         getSelectedDoctor(){
             return this.$store.getters.getSelectedDoctor
+        },
+
+        getRolesAndPermissions() {
+            return this.$store.getters.getRolesAndPermissions
+        },
+    },
+
+    beforeMount(){
+        // this means that current logged in user have no permission to create appointments
+        if(this.getRolesAndPermissions.permissions.indexOf('create appointments') == -1){
+            this.$router.push('/dashboard');
+            return;
         }
     },
 
