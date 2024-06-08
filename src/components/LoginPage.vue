@@ -10,6 +10,7 @@
 </template>
 
 <script>
+//axios
 import axios from "@/lib/axios";
 
 export default {
