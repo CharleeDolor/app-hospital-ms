@@ -19,14 +19,6 @@ export default {
         }
     },
 
-    beforeMount(){
-        // this means that current logged in user have no permission to create records
-        if(this.getRolesAndPermissions.permissions.indexOf('create records') == -1){
-            this.$router.push('/dashboard');
-            return;
-        }
-    },
-
     beforeUnmount(){
         // using lifecycle hook before unmount to prevent user from leaving the page
         // only leaves when data property isDone is true

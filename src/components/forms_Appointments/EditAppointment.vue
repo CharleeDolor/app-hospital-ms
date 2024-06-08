@@ -36,11 +36,6 @@ export default {
     },
 
     async beforeMount(){
-        // this means that current logged in user have no permission to edit appointments
-        if(this.getRolesAndPermissions.permissions.indexOf('edit appointments') == -1){
-            this.$router.push('/dashboard');
-            return;
-        }
         const response = await axios.get('/api/appointments/' + this.$route.params.id);
 
         this.day = response.data.appointment.day;

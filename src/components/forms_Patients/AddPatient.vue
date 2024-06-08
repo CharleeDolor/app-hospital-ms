@@ -89,14 +89,6 @@ export default {
         }
     },
 
-    beforeMount(){
-        // this means that current logged in user have no permission to create patients
-        if(this.getRolesAndPermissions.permissions.indexOf('create patients') == -1){
-            this.$router.push('/dashboard');
-            return;
-        }
-    },
-
     methods: {
         async addPatient() {
             const response = await axios.post('/api/patients', {

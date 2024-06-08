@@ -38,14 +38,6 @@ export default {
         },
     },
 
-    beforeMount(){
-        // this means that current logged in user have no permission to create appointments
-        if(this.getRolesAndPermissions.permissions.indexOf('create appointments') == -1){
-            this.$router.push('/dashboard');
-            return;
-        }
-    },
-
     data(){
         return {
             type: '',

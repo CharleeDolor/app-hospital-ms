@@ -15,8 +15,20 @@ import CreateAppointment from '@/components/forms_Appointments/CreateAppointment
 import EditAppointment from '@/components/forms_Appointments/EditAppointment.vue'
 import ConsultationOngoing from '@/components/forms_Records/ConsultationOngoing.vue'
 import CreateRecord from '@/components/forms_Records/CreateRecord.vue'
+import ForbiddenPage from '@/components/ForbiddenPage.vue';
 
 import { createRouter, createWebHistory } from 'vue-router'
+
+function routeGuard(to, from, next, permission){
+  if (localStorage.getItem('token')) {
+    if( localStorage.getItem('vuex').indexOf(permission) == -1){
+      next('/forbidden');
+    }
+    next();
+  } else {
+    next('/');
+  }
+}
 
 const routes = [
   {
@@ -39,109 +51,55 @@ const routes = [
   {
     path: '/patients',
     name: 'patients',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'view patients'),
     component: PatientsPage
   },
   {
     path: '/patients/create',
     name: 'patientsAdd',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create patients'),
     component: AddPatient
   },
   {
     path: '/patients/show/:id',
     name: 'patientsShow',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'view patients'),
     component: PatientDetails
   },
   {
     path: '/patients/edit/:id',
     name: 'patientsEdit',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'edit patients'),
     component: EditPatient
   },
   {
     path: '/doctors',
     name: 'doctors',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'view doctors'),
     component: DoctorsPage
   },
   {
     path: '/doctors/show/:id',
     name: 'doctorsShow',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'view doctors'),
     component: DoctorDetails
   },
   {
     path: '/doctors/edit/:id',
     name: 'doctorsEdit',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'edit doctors'),
     component: EditDoctor
   },
   {
     path: '/doctors/create/',
     name: 'doctorsAdd',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create doctors'),
     component: AddDoctor
   },
   {
     path: '/records',
     name: 'records',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'view records'),
     component: MedicalRecords
   },
   {
@@ -152,54 +110,37 @@ const routes = [
   {
     path: '/appointments',
     name: 'appointments',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'view appointments'),
     component: AppointmentsPage
   },
   {
     path: '/appointments/create',
     name: 'appointmentsCreate',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create appointments'),
     component: CreateAppointment
   },
   {
     path: '/appointments/edit/:id',
     name: 'appointmentsEdit',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'edit appointments'),
     component: EditAppointment
   },
   {
     path: '/records/consultation/:id',
     name: 'recordsConsultation',
-    beforeEnter: (to, from, next) => {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next('/');
-      }
-    },
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create appointments'),
     component: ConsultationOngoing
   },
   {
     path: '/records/create/:id',
     name: 'recordsCreate',
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create appointments'),
+    component: CreateRecord
+  },
+
+  {
+    path: '/forbidden',
+    name: 'forbidden',
     beforeEnter: (to, from, next) => {
       if (localStorage.getItem('token')) {
         next();
@@ -207,8 +148,8 @@ const routes = [
         next('/');
       }
     },
-    component: CreateRecord
-  },
+    component: ForbiddenPage
+  }
 ]
 
 const router = createRouter({
