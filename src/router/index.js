@@ -128,13 +128,13 @@ const routes = [
   {
     path: '/records/consultation/:id',
     name: 'recordsConsultation',
-    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create appointments'),
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create records'),
     component: ConsultationOngoing
   },
   {
     path: '/records/create/:id',
     name: 'recordsCreate',
-    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create appointments'),
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create records'),
     component: CreateRecord
   },
 
