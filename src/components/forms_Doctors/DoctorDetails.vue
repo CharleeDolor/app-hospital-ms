@@ -47,7 +47,7 @@ export default {
         },
 
         back() {
-            this.$router.go(-1);
+            this.$router.push('/dashboard');
         },
 
         async deleteDoctor(doctor) {
@@ -55,7 +55,7 @@ export default {
 
             if (response.status == 200) {
                 alert("Doctor's details deleted.");
-                this.$router.push('/doctors');
+                this.$router.push('/dashboard');
             }
         },
     },

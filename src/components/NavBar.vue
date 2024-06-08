@@ -12,6 +12,9 @@
         <li class="nav-item" v-if="this.getRolesAndPermissions.roles[0] == 'patient'">
             <button class="nav-link" @click="gotoPatientDetails">My Details</button>
         </li>
+        <li class="nav-item" v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">
+            <button class="nav-link" @click="gotoDoctorDetails">Personal Information</button>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="/appointments">Appointments</a>
         </li>
@@ -50,8 +53,17 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-
         },
+
+        async gotoDoctorDetails() {
+            const response = await axios.get('/api/user/information');
+
+            this.$router.push({
+                name: 'doctorsShow',
+                params: {id: response.data.account.details_id}
+            });
+        },
+
         async logout() {
             const response = await axios.post('/api/logout');
 
