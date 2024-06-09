@@ -51,7 +51,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <button class="btn btn-warning m-2" @click="gotoEdit">Edit</button>
+                    <button class="btn btn-warning m-2" @click="gotoEdit" v-if="this.getRolesAndPermissions.roles[0] != 'patient'">Edit</button>
                   </td>
                   <td>
                     <button class="btn btn-secondary m-2" @click="back">Back</button>
@@ -87,7 +87,11 @@
     },
     methods: {
       back() {
-        this.$router.push('/patients');
+        if(this.getRolesAndPermissions.roles[0] == "patient"){
+          this.$router.push('/dashboard');
+        } else {
+          this.$router.push('/patients');
+        }
       },
       async deletePatient(patient) {
         const response = await axios.delete('/api/patients/' + patient.id);

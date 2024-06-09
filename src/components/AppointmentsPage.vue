@@ -15,7 +15,8 @@
                 <th>Type</th>
                 <th>Queue Number</th>
                 <th>Day</th>
-                <th>Doctor's Name</th>
+                <th v-if="this.getRolesAndPermissions.roles[0] == 'patient'">Doctor's Name</th>
+                <th v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">Patient's Name</th>
                 <th>Action</th>
             </thead>
 
@@ -24,7 +25,8 @@
                     <td>{{ appointment.type }}</td>
                     <td>{{ appointment.queue_number }}</td>
                     <td>{{ appointment.day }}</td>
-                    <td>{{ appointment.doctor_id }}</td>
+                    <td v-if="this.getRolesAndPermissions.roles[0] == 'patient'">{{ appointment.doctors_name }}</td>
+                    <td v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">{{ appointment.patients_name }}</td>
                     <td>
                         <div class="d-flex gap-2">
                             <button class="btn btn-success" v-if="this.getRolesAndPermissions.roles[0] == 'doctor'"
@@ -71,7 +73,6 @@ export default {
     async beforeMount() {
         try {
             const account = await axios.get('/api/user/information');
-            console.log(account.data);
             if (account.data.account.details_id == null && account.data.account.type == "3") {
                 alert('Please fill up your details before making an appointment')
                 this.$router.push('/patients/create');

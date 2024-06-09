@@ -124,7 +124,12 @@ export default {
         },
 
         back() {
-            this.$router.push('/doctors');
+            if(this.getRolesAndPermissions[0] == "admin"){
+                this.$router.push('/doctors');
+                return;
+            }
+
+            this.$router.push('/dashboard');
         },
     },
 

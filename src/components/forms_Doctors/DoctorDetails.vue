@@ -16,7 +16,7 @@
             <button class="btn btn-warning m-2" @click="gotoEditDoctor(doctor.id)">Edit</button>
             <form @submit.prevent="deleteDoctor(this.doctor)">
                 <button class="btn btn-danger"
-                    onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</button>
+                    onclick="return confirm('Are you sure you want to delete this doctor?')" v-if="this.getRolesAndPermissions[0] == 'admin'">Delete</button>
             </form>
             <button class="btn btn-secondary m-2" @click="back">Back</button>
         </div>
@@ -35,6 +35,12 @@ export default {
     data() {
         return {
             doctor: []
+        }
+    },
+
+    computed: {
+        getRolesAndPermissions() {
+            return this.$store.getters.getRolesAndPermissions
         }
     },
 
