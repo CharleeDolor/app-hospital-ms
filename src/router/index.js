@@ -70,6 +70,7 @@ const routes = [
         next('/');
       }
   },
+  component: PatientDetails
 },
   {
     path: '/patients/edit/:id',

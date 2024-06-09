@@ -23,7 +23,7 @@
                     <td>
                         <div class="d-flex justify-content-center align-items-center gap-2">
                             <button class="btn btn-primary" @click="show(patient.id)">View</button>
-                            <button class="btn btn-warning" @click="gotoEditPatient(patient.id)">Edit</button>
+                            <!-- <button class="btn btn-warning" @click="gotoEditPatient(patient.id)">Edit</button> -->
                             <form @submit.prevent="deletePatient(patient)">
                                 <button class="btn btn-danger"
                                     onclick="return confirm('Are you sure you want to delete this patient?')">Delete</button>
