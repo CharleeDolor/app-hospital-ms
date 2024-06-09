@@ -36,8 +36,8 @@
           </div>
   
           <div>
-            <button type="submit" class="btn btn-warning m-2">Update</button>
-            <button @click="cancel" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn-update">Update</button>
+            <button @click="cancel" class="btn-cancel">Cancel</button>
           </div>
         </form>
       </div>
@@ -181,28 +181,50 @@
     font-size: 16px;
   }
   
-  button {
-    width: auto;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
+.btn-update,
+.btn-cancel {
+  width: 45%;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+  
+  .btn-update {
+     padding: 5px;
+     margin-right: 10px; 
+     border-radius: 15px;
+     box-shadow: rgba(45, 35, 66, 0.5) 0 1px 2px, rgba(45, 35, 66, 0.5) 0 5px 10px -1px, #D6D6E7 0 -2px 0 inset;
+     background-color: #c99300;
+     border: none;
+     color: white;
+     cursor: pointer;
+     transition: all 0.3s ease; 
   }
   
-  .btn-warning {
-    background-color: #ffc107;
-    color: #333;
+  .btn-cancel{
+     padding: 5px;
+     margin-left: 10px;
+     border-radius: 15px;
+     box-shadow: rgba(45, 35, 66, 0.5) 0 1px 2px, rgba(45, 35, 66, 0.5) 0 5px 10px -1px, #D6D6E7 0 -2px 0 inset;
+     background-color: #6a6767;
+     border: none;
+     color: white;
+     cursor: pointer;
+     transition: all 0.3s ease; 
   }
   
-  .btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
+  .btn-update:hover{
+    background: linear-gradient(to bottom, #c99300, white);
+     color: black;
+     transform: scale(1.01);
   }
-  
-  .btn-warning:hover,
-  .btn-secondary:hover {
-    opacity: 0.8;
+  .btn-cancel:hover {
+    background: linear-gradient(to bottom, #6a6767, white);
+     color: black;
+     transform: scale(1.01);
+
   }
   
   </style>
