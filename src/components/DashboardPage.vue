@@ -9,19 +9,19 @@
             <h3>Statistics</h3>
             <table>
                 <tr>
-                    <td><p class="m-0">Patients: NaN</p></td>
+                    <td><p class="m-0">Patients: {{ this.count.patients }}</p></td>
                     <td><button class="btn btn-primary" @click="getAllPatients">View</button></td>
                 </tr>
                 <tr>
-                    <td><p class="m-0">Doctors: NaN</p></td>
+                    <td><p class="m-0">Doctors: {{ this.count.doctors }}</p></td>
                     <td><button class="btn btn-primary">View</button></td>
                 </tr>
                 <tr>
-                    <td><p class="m-0">Appointments: NaN</p></td>
+                    <td><p class="m-0">Appointments: {{ this.count.appointments }}</p></td>
                     <td><button class="btn btn-primary">View</button></td>
                 </tr>
                 <tr>
-                    <td><p class="m-0">Medical Records: NaN</p></td>
+                    <td><p class="m-0">Medical Records: {{ this.count.records }}</p></td>
                     <td><button class="btn btn-primary">View</button></td>
                 </tr>
             </table>
@@ -33,6 +33,7 @@
 
 <script>
 import NavBar from "./NavBar.vue";
+import axios from "@/lib/axios";
 
 export default {
     components: {
@@ -42,7 +43,13 @@ export default {
     data(){
         return {
             rolesAndPermissions: [],
+            count: [],
         }
+    },
+
+    async beforeMount(){
+        const response = await axios.get('/api/count');
+        this.count = response.data.count;
     },
 
     computed: {
