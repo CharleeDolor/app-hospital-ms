@@ -37,9 +37,7 @@
                                         || this.getRolesAndPermissions.roles[0] == 'doctor'">Cancel</button>
                             </form>
                         </div>
-
                     </td>
-
                 </tr>
             </tbody>
         </table>
@@ -47,6 +45,28 @@
             <h4>Seems empty here. Let's wait for the patients to create an appointment</h4>
         </div>
     </div>
+
+    <!-- admin panel -->
+    <div class="container-fluid">
+        <table v-if="this.appointments.length != 0">
+            <thead>
+                <th>Type</th>
+                <th>Day</th>
+                <th>Doctor's Name</th>
+                <th>Patient's Name</th>
+            </thead>
+
+            <tbody>
+                <tr v-for="appointment in appointments" :key="appointment.id">
+                    <td>{{ appointment.type }}</td>
+                    <td>{{ appointment.day }}</td>
+                    <td>{{ appointment.doctors_name }}</td>
+                    <td>{{ appointment.patients_name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- end admin panel -->
 
 </template>
 
