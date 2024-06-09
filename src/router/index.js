@@ -69,8 +69,9 @@ const routes = [
       } else {
         next('/');
       }
+    },
+    component: PatientDetails
   },
-},
   {
     path: '/patients/edit/:id',
     name: 'patientsEdit',
