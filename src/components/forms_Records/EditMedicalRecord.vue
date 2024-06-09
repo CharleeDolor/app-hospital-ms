@@ -5,7 +5,8 @@
           <div class="logo">
             <img :src="require('@/assets/medicrecord.jpg')" alt="Medical record" class="imglog">
           </div>
-          <div class="name">Edit Medical Record</div>
+         <!--Doctor: Can update patient medical records.-->
+          <div class="name">Edit Medical Record</div>  
         </div>
         <NavBar></NavBar>
         <form @submit.prevent="updateMedicalRecord">
