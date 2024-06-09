@@ -70,6 +70,13 @@ export default {
 
     async beforeMount() {
         try {
+            const account = await axios.get('/api/user/information');
+            console.log(account.data);
+            if (account.data.account.details_id == null && account.data.account.type == "3") {
+                alert('Please fill up your details before making an appointment')
+                this.$router.push('/patients/create');
+            }
+
             const response = await axios.get('/api/appointments');
 
             this.appointments = response.data.appointments;

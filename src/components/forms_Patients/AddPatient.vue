@@ -110,8 +110,10 @@ export default {
         const response = await axios.get('/api/user/information');
         console.log(response.data);
         if(response.data.account.type == "3"){
+            this.name = response.data.account.name;
             this.email = response.data.account.email;
             document.getElementById('email').readOnly = true;
+            document.getElementById('name').readOnly = true;
         }
     },
 

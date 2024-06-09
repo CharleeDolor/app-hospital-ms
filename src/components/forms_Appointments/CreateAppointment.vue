@@ -48,9 +48,6 @@ export default {
     methods: {
         async createAppointment(){
             let doctorId = this.getSelectedDoctor.id
-            console.log(this.type)
-            console.log(this.day)
-            console.log(doctorId) 
             const response = await axios.post('/api/appointments', {
                 type: this.type,
                 day: this.day,
