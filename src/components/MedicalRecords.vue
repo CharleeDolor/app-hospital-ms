@@ -116,7 +116,7 @@ export default {
 
     async beforeMount(){
         const response = await axios.get('/api/records');
-        this.records = response.data.records;
+        this.records = response.data;
 
         if("message" in this.records){
             this.records = response.data;
