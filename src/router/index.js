@@ -63,9 +63,14 @@ const routes = [
   {
     path: '/patients/show/:id',
     name: 'patientsShow',
-    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'view patients'),
-    component: PatientDetails
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('token')) {
+        next();
+      } else {
+        next('/');
+      }
   },
+},
   {
     path: '/patients/edit/:id',
     name: 'patientsEdit',
