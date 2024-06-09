@@ -104,7 +104,6 @@
             </table>
           </div>
         </div>
-                 
             </div>
           </div>
           <!-- end doctor panel -->

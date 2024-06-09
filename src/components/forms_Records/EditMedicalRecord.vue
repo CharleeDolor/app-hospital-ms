@@ -11,12 +11,12 @@
         <form @submit.prevent="updateMedicalRecord">
           <div class="form-group">
             <label for="patient_name">Patient Name:</label>
-            <input type="text" name="patient_name" v-model="patient_name" id="patient_name">
+            <input type="text" name="patient_name" v-model="patient_name" id="patient_name" readonly>
           </div>
   
           <div class="form-group">
             <label for="doctor_name">Doctor Name:</label>
-            <input type="text" name="doctor_name" v-model="doctor_name" id="doctor_name">
+            <input type="text" name="doctor_name" v-model="doctor_name" id="doctor_name" readonly>
           </div>
   
           <div class="form-group">
@@ -66,8 +66,6 @@
       async updateMedicalRecord() {
         try {
           const response = await axios.put('/api/records/' + this.$route.params.id, {
-            patient_name: this.patient_name,
-            doctor_name: this.doctor_name,
             diagnosis: this.diagnosis,
             date_of_consultation: this.date_of_consultation,
             recommendations: this.recommendations
