@@ -72,11 +72,6 @@ const routes = [
     },
     component: PatientDetails
   },
-<<<<<<< HEAD
-  component: PatientDetails
-},
-=======
->>>>>>> 89b52b4ba34c7919eed5af8c8b554fe26b0ef528
   {
     path: '/patients/edit/:id',
     name: 'patientsEdit',

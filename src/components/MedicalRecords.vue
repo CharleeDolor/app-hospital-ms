@@ -19,7 +19,7 @@
                 </thead>
 
                 <tbody>
-                    <tr v-for="record in records.records" :key="record.id">
+                    <tr v-for="record in records" :key="record.id">
                         <td>{{ record.patient_id }}</td>
                         <td>{{ record.doctor_id }}</td>
                         <td>{{ record.diagnosis }}</td>
@@ -116,7 +116,7 @@ export default {
 
     async beforeMount(){
         const response = await axios.get('/api/records');
-        this.records = response.data;
+        this.records = response.data.records;
 
         if("message" in this.records){
             this.records = response.data;
