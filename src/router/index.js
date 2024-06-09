@@ -16,6 +16,7 @@ import EditAppointment from '@/components/forms_Appointments/EditAppointment.vue
 import ConsultationOngoing from '@/components/forms_Records/ConsultationOngoing.vue'
 import CreateRecord from '@/components/forms_Records/CreateRecord.vue'
 import ForbiddenPage from '@/components/ForbiddenPage.vue';
+import EditMedicalRecord from '@/components/forms_Records/EditMedicalRecord.vue';
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -143,6 +144,12 @@ const routes = [
     beforeEnter: (to, from, next) => routeGuard(to, from, next, 'create records'),
     component: CreateRecord
   },
+  {
+    path: '/records/edit/:id', // Define the route for editing medical records
+    name: 'editMedicalRecord',
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'edit records'), // Add route guard
+    component: EditMedicalRecord
+},
 
   {
     path: '/forbidden',
