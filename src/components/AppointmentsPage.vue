@@ -8,8 +8,11 @@
         <button class="btn btn-success" @click="gotoCreateAppointment">Click here to create an appointment</button>
     </div>
 
-    <div class="container-fluid"
-        v-if="this.getRolesAndPermissions.roles[0] == 'patient' || this.getRolesAndPermissions.roles[0] == 'doctor'">
+    <div v-if="this.appointments.length == 0 && this.getRolesAndPermissions.roles[0] == 'doctor'">
+        <h4>Seems empty here. Let's wait for the patients to create an appointment</h4>
+    </div>
+
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'patient' || this.getRolesAndPermissions.roles[0] == 'doctor'">
         <table v-if="this.appointments.length != 0">
             <thead>
                 <th>Type</th>
@@ -41,13 +44,10 @@
                 </tr>
             </tbody>
         </table>
-        <div v-else-if="this.getRolesAndPermissions.roles[0] == 'doctor'">
-            <h4>Seems empty here. Let's wait for the patients to create an appointment</h4>
-        </div>
     </div>
 
     <!-- admin panel -->
-    <div class="container-fluid">
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
         <table v-if="this.appointments.length != 0">
             <thead>
                 <th>Type</th>
