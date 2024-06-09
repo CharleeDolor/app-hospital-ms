@@ -2,49 +2,84 @@
     <NavBar></NavBar>
     <h1>Appointments</h1>
 
-    <div class="container-fluid"
-        v-if="this.appointments.length == 0 && this.getRolesAndPermissions.roles[0] == 'patient'">
-        <h3>Seems empty here.</h3>
-        <button class="btn btn-success" @click="gotoCreateAppointment">Click here to create an appointment</button>
-    </div>
+    <!-- patient panel -->
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'patient'">
+        <div class="container" v-if="this.appointments.length == 0">
+            <h3>Seems empty here.</h3>
+            <button class="btn btn-success" @click="gotoCreateAppointment">Click here to create an appointment</button>
+        </div>
 
-    <div v-if="this.appointments.length == 0 && this.getRolesAndPermissions.roles[0] == 'doctor'">
-        <h4>Seems empty here. Let's wait for the patients to create an appointment</h4>
-    </div>
+        <div class="container" v-else>
+            <table>
+                <thead>
+                    <th>Type</th>
+                    <th>Queue Number</th>
+                    <th>Day</th>
+                    <th>Doctor's Name</th>
 
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'patient' || this.getRolesAndPermissions.roles[0] == 'doctor'">
-        <table v-if="this.appointments.length != 0">
-            <thead>
-                <th>Type</th>
-                <th>Queue Number</th>
-                <th>Day</th>
-                <th v-if="this.getRolesAndPermissions.roles[0] == 'patient'">Doctor's Name</th>
-                <th v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">Patient's Name</th>
-                <th>Action</th>
-            </thead>
+                    <th>Action</th>
+                </thead>
 
-            <tbody>
-                <tr v-for="appointment in appointments" :key="appointment.id">
-                    <td>{{ appointment.type }}</td>
-                    <td>{{ appointment.queue_number }}</td>
-                    <td>{{ appointment.day }}</td>
-                    <td v-if="this.getRolesAndPermissions.roles[0] == 'patient'">{{ appointment.doctors_name }}</td>
-                    <td v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">{{ appointment.patients_name }}</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-success" v-if="this.getRolesAndPermissions.roles[0] == 'doctor'"
-                                @click="consult(appointment.patient_id)">Start Consultation</button>
-                            <form @submit.prevent="deleteAppointment(appointment)">
-                                <button class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you want to cancel your appointment?')" v-if="this.getRolesAndPermissions.roles[0] == 'patient'
-                                        || this.getRolesAndPermissions.roles[0] == 'doctor'">Cancel</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <tbody>
+                    <tr v-for="appointment in appointments" :key="appointment.id">
+                        <td>{{ appointment.type }}</td>
+                        <td>{{ appointment.queue_number }}</td>
+                        <td>{{ appointment.day }}</td>
+                        <td>{{ appointment.doctors_name }}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <form @submit.prevent="deleteAppointment(appointment)">
+                                    <button class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to cancel your appointment?')">Cancel</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <!-- end patient panel -->
+
+    <!-- doctor panel -->
+    <div v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">
+        <h4 v-if="this.appointments.length == 0">Seems empty here. Let's wait for the patients to create an appointment
+        </h4>
+
+        <div class="container-fluid" v-else>
+            <table>
+                <thead>
+                    <th>Type</th>
+                    <th>Queue Number</th>
+                    <th>Day</th>
+                    <th>Patient's Name</th>
+                    <th>Action</th>
+                </thead>
+
+                <tbody>
+                    <tr v-for="appointment in appointments" :key="appointment.id">
+                        <td>{{ appointment.type }}</td>
+                        <td>{{ appointment.queue_number }}</td>
+                        <td>{{ appointment.day }}</td>
+                        <td>{{ appointment.patients_name }}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-success" @click="consult(appointment.patient_id)">Start
+                                    Consultation</button>
+                                <form @submit.prevent="deleteAppointment(appointment)">
+                                    <button class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to cancel your appointment?')">Cancel</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- end doctor panel -->
+
+
 
     <!-- admin panel -->
     <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
