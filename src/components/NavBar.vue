@@ -100,6 +100,7 @@ export default {
 </script>
 
 <style scoped>
+  /*modal for logout*/
 .modal-content {
     display: flex;
     flex-direction: column;

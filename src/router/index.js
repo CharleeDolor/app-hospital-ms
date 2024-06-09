@@ -145,9 +145,9 @@ const routes = [
     component: CreateRecord
   },
   {
-    path: '/records/edit/:id', // Define the route for editing medical records
+    path: '/records/edit/:id', 
     name: 'editMedicalRecord',
-    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'edit records'), // Add route guard
+    beforeEnter: (to, from, next) => routeGuard(to, from, next, 'edit records'), 
     component: EditMedicalRecord
 },
 
