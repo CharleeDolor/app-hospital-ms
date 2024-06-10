@@ -17,7 +17,11 @@
                             <td><label for="birthday">Birthday:</label></td>
                             <td><input type="date" v-model="birthday" id="birthday" class="form-control"></td>
                             <td><label for="gender">Gender:</label></td>
-                            <td><input type="text" v-model="gender" id="gender" class="form-control"></td>
+                            <td><select v-model="gender" id="gender" class="form-control">
+                                    <option disabled value="">Please select one</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select></td>
                         </tr>
 
                         <tr>

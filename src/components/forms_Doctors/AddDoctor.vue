@@ -2,55 +2,73 @@
     <NavBar></NavBar>
     <h1>New Doctor</h1>
     <form @submit.prevent="addDoctor">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" name="name" v-model="name" id="name">
-        </div>
+        <div class="d-flex justify-content-center">
+            <div>
+                <h3>Physician's Details</h3>
+                <table>
+                    <tr>
+                        <td><label for="name">Name:</label></td>
+                        <td><input type="text" name="name" v-model="name" id="name"></td>
+                    </tr>
 
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" v-model="email">
-        </div>
+                    <tr>
+                        <td><label for="address">Address:</label></td>
+                        <td><input type="text" name="address" id="address" v-model="address"></td>
+                    </tr>
 
-        <div>
-            <label for="phone_number">Phone Number:</label>
-            <input type="text" name="phone_number" id="phone_number" v-model="phone_number">
-        </div>
+                    <tr>
+                        <td><label for="phone_number">Phone Number:</label></td>
+                        <td><input type="text" name="phone_number" id="phone_number" v-model="phone_number"></td>
+                    </tr>
 
-        <div>
-            <label for="address">Address:</label>
-            <input type="text" name="address" id="address" v-model="address">
-        </div>
+                    <tr>
+                        <td><label for="email">Email:</label></td>
+                        <td><input type="email" name="email" id="email" v-model="email"></td>
+                    </tr>
 
-        <div>
-            <label for="medical_license">Medical License:</label>
-            <input type="text" name="medical_license" id="medical_license" v-model="medical_license">
-        </div>
+                    <tr>
+                        <td><label for="gender">Gender:</label></td>
+                        <td><select v-model="gender" id="gender">
+                                <option disabled value="">Please select one</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select></td>
+                    </tr>
+                </table>
+            </div>
 
-        <div>
-            <label for="gender">Gender:</label>
-            <input type="text" name="gender" id="gender" v-model="gender">
-        </div>
+            <div class="">
+                <h3>Additional Information</h3>
+                <table>
+                    <tr>
+                        <td><label for="medical_license">Medical License:</label></td>
+                        <td><input type="text" name="medical_license" class="w-100" id="medical_license" v-model="medical_license">
+                        </td>
+                    </tr>
 
-        <div>
-            <label for="medical_school_graduated">Medical School Graduated:</label>
-            <input type="text" name="medical_school_graduated" id="medical_school_graduated"
-                v-model="medical_school_graduated">
-        </div>
+                    <tr>
+                        <td><label for="medical_school_graduated">Medical School Graduated:</label></td>
+                        <td><input type="text" name="medical_school_graduated" class="w-100" id="medical_school_graduated" v-model="medical_school_graduated"></td>
+                    </tr>
 
-        <div>
-            <label for="year_graduated">Year Graduated:</label>
-            <input type="date" name="year_graduated" id="year_graduated" v-model="year_graduated">
-        </div>
+                    <tr>
+                        <td><label for="year_graduated">Year Graduated:</label></td>
+                        <td><input type="date" class="w-100" name="year_graduated" id="year_graduated" v-model="year_graduated"></td>
+                    </tr>
 
-        <div>
-            <label for="specialties">Specialties</label>
-            <input type="text" name="specialties" id="specialties" v-model="specialties">
-        </div>
+                    <tr>
+                        <td><label for="specialties">Specialties</label></td>
+                        <td><textarea name="specialties" id="specialties" cols="30" rows="5"
+                                v-model="specialties"></textarea></td>
+                    </tr>
 
-        <div>
-            <label for="career_summary">Career Summary:</label>
-            <textarea name="career_summary" id="" cols="20" rows="10" v-model="career_summary"></textarea>
+                    <tr>
+                        <td><label for="career_summary">Career Summary:</label></td>
+                        <td><textarea name="career_summary" id="" cols="30" rows="5"
+                                v-model="career_summary"></textarea></td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <div>
@@ -67,7 +85,7 @@ export default {
     components: {
         NavBar
     },
-    
+
     computed: {
         getRolesAndPermissions() {
             return this.$store.getters.getRolesAndPermissions
@@ -132,3 +150,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+td {
+    padding: 0.5rem;
+}
+</style>

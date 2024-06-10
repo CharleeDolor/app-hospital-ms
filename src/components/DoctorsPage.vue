@@ -6,35 +6,37 @@
     <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
         <h3>All Doctors</h3>
         <router-link to="/doctors/create" class="btn btn-success">Add Doctor</router-link>
-        <table class="table-bordered">
-            <thead class="">
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Specialties</th>
-                <th>Action</th>
-            </thead>
+        <div class="container">
+            <table class="table-bordered">
+                <thead class="">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Specialties</th>
+                    <th>Action</th>
+                </thead>
 
-            <tbody>
-                <tr v-for="doctor in doctors" :key="doctor.id">
-                    <td>{{ doctor.name }}</td>
-                    <td>{{ doctor.email }}</td>
-                    <td>{{ doctor.phone_number }}</td>
-                    <td>{{ doctor.specialties }}</td>
+                <tbody>
+                    <tr v-for="doctor in doctors" :key="doctor.id">
+                        <td>{{ doctor.name }}</td>
+                        <td>{{ doctor.email }}</td>
+                        <td>{{ doctor.phone_number }}</td>
+                        <td>{{ doctor.specialties }}</td>
 
-                    <td>
-                        <div class="d-flex justify-content-center align-items-center gap-2">
-                            <button class="btn btn-primary" @click="show(doctor.id)">View</button>
-                            <button class="btn btn-warning" @click="edit(doctor.id)">Edit</button>
-                            <form @submit.prevent="deleteDoctor(doctor)">
-                                <button class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                <button class="btn btn-primary" @click="show(doctor.id)">View</button>
+                                <button class="btn btn-warning" @click="edit(doctor.id)">Edit</button>
+                                <form @submit.prevent="deleteDoctor(doctor)">
+                                    <button class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <!-- end admin panel -->
 
@@ -116,8 +118,8 @@ export default {
             }
         },
 
-        getDoctorId(doctor){
-            this.$store.dispatch('asyncLoadSelectedDoctor', {id: doctor.id, name: doctor.name});
+        getDoctorId(doctor) {
+            this.$store.dispatch('asyncLoadSelectedDoctor', { id: doctor.id, name: doctor.name });
             this.$router.go(-1);
         }
     },

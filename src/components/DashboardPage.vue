@@ -9,20 +9,20 @@
             <h3>Statistics</h3>
             <table>
                 <tr>
-                    <td><p class="m-0">Patients: {{ this.count.patients }}</p></td>
-                    <td><button class="btn btn-primary" @click="getAllPatients">View</button></td>
+                    <td class="w-50 text-end p-3"><p class="m-0">Patients: {{ this.count.patients }}</p></td>
+                    <td class="text-start"><button class="btn btn-primary" @click="getAllPatients">View</button></td>
                 </tr>
                 <tr>
-                    <td><p class="m-0">Doctors: {{ this.count.doctors }}</p></td>
-                    <td><button class="btn btn-primary">View</button></td>
+                    <td class="w-50 text-end p-3"><p class="m-0">Doctors: {{ this.count.doctors }}</p></td>
+                    <td class="text-start"><button class="btn btn-primary" @click="getAllDoctors">View</button></td>
                 </tr>
                 <tr>
-                    <td><p class="m-0">Appointments: {{ this.count.appointments }}</p></td>
-                    <td><button class="btn btn-primary">View</button></td>
+                    <td class="w-50 text-end p-3"><p class="m-0">Appointments: {{ this.count.appointments }}</p></td>
+                    <td class="text-start"><button class="btn btn-primary" @click="getAllAppointments">View</button></td>
                 </tr>
                 <tr>
-                    <td><p class="m-0">Medical Records: {{ this.count.records }}</p></td>
-                    <td><button class="btn btn-primary">View</button></td>
+                    <td class="w-50 text-end p-3"><p class="m-0">Medical Records: {{ this.count.records }}</p></td>
+                    <td class="text-start"><button class="btn btn-primary" @click="getAllRecords">View</button></td>
                 </tr>
             </table>
         </div>
@@ -63,6 +63,18 @@ export default {
     methods: {
         getAllPatients(){
             this.$router.push('/patients');
+        },
+
+        getAllDoctors(){
+            this.$router.push('/doctors');
+        },
+
+        getAllAppointments(){
+            this.$router.push('/appointments');
+        },
+
+        getAllRecords(){
+            this.$router.push('records');
         }
     }
 
