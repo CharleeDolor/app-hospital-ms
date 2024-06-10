@@ -27,7 +27,7 @@
                         <td>{{ appointment.day }}</td>
                         <td>{{ appointment.doctors_name }}</td>
                         <td>
-                            <div class="d-flex gap-2">
+                            <div class="d-flex gap-2 align-items-center justify-content-center">
                                 <form @submit.prevent="deleteAppointment(appointment)">
                                     <button class="btn btn-danger"
                                         onclick="return confirm('Are you sure you want to cancel your appointment?')">Cancel</button>
@@ -46,7 +46,7 @@
         <h4 v-if="this.appointments.length == 0">Seems empty here. Let's wait for the patients to create an appointment
         </h4>
 
-        <div class="container-fluid" v-else>
+        <div class="container" v-else>
             <table>
                 <thead>
                     <th>Type</th>
@@ -63,7 +63,7 @@
                         <td>{{ appointment.day }}</td>
                         <td>{{ appointment.patients_name }}</td>
                         <td>
-                            <div class="d-flex gap-2">
+                            <div class="d-flex gap-2 align-items-center justify-content-center">
                                 <button class="btn btn-success" @click="consult(appointment.patient_id)">Start
                                     Consultation</button>
                                 <form @submit.prevent="deleteAppointment(appointment)">
@@ -176,3 +176,36 @@ export default {
     }
 }
 </script>
+
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #f4f4f4;
+}
+
+thead th {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    font-size: 1rem;
+}
+
+tbody tr {
+    transition: background-color 0.2s;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.9rem;
+}
+</style>
