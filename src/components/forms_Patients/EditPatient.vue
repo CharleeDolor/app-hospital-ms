@@ -10,14 +10,19 @@
                         <td><label for="name">Name:</label></td>
                         <td><input type="text" v-model="name" id="name" class="form-control"></td>
                         <td>
-                            <label for="email">Email:</label></td>
+                            <label for="email">Email:</label>
+                        </td>
                         <td><input type="email" v-model="email" id="email" class="form-control"></td>
                     </tr>
                     <tr>
                         <td><label for="birthday">Birthday:</label></td>
                         <td><input type="date" v-model="birthday" id="birthday" class="form-control"></td>
                         <td><label for="gender">Gender:</label></td>
-                        <td><input type="text" v-model="gender" id="gender" class="form-control"></td>
+                        <td><select v-model="gender" id="gender" class="form-control">
+                                <option disabled value="">Please select one</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select></td>
                     </tr>
 
                     <tr>
@@ -28,7 +33,7 @@
                                 <option>Single</option>
                                 <option>Married</option>
                                 <option>Widowed</option>
-                                
+
                             </select>
                         </td>
                         <td><label for="contact_number">Contact Number:</label></td>
@@ -55,7 +60,8 @@
                             </select>
                         </td>
                         <td><label for="address">Address:</label></td>
-                        <td><textarea v-model="address" id="address" cols="20" rows="5" class="form-control"></textarea></td>
+                        <td><textarea v-model="address" id="address" cols="20" rows="5" class="form-control"></textarea>
+                        </td>
                     </tr>
 
                     <tr>
@@ -177,7 +183,8 @@ export default {
 .form-control {
     width: 100%;
     padding: 8px;
-    box-sizing: border-box; /* Includes padding in the width calculation */
+    box-sizing: border-box;
+    /* Includes padding in the width calculation */
 }
 
 .btn {

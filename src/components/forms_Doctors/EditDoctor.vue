@@ -1,35 +1,35 @@
 <template>
     <NavBar></NavBar>
-    <h1>Edit Doctor's Details</h1>
+    <h1 class="p-4">Edit Doctor's Details</h1>
 
     <form @submit.prevent="editDoctor">
-        <div class="d-flex justify-content-center">
-            <div>
-                <h3>Physician's Details</h3>
+        <div class="d-flex justify-content-center gap-5">
+            <div class="p-4 border border-2 rounded">
+                <h3>Physician's Personal Details</h3>
                 <table>
                     <tr>
                         <td><label for="name">Name:</label></td>
-                        <td><input type="text" name="name" v-model="name" id="name"></td>
+                        <td><input type="text" name="name" v-model="name" id="name" class="form-control mb-2"></td>
                     </tr>
 
                     <tr>
                         <td><label for="address">Address:</label></td>
-                        <td><input type="text" name="address" id="address" v-model="address"></td>
+                        <td><input type="text" name="address" id="address" v-model="address" class="form-control mb-2"></td>
                     </tr>
 
                     <tr>
                         <td><label for="phone_number">Phone Number:</label></td>
-                        <td><input type="text" name="phone_number" id="phone_number" v-model="phone_number"></td>
+                        <td><input type="text" name="phone_number" id="phone_number" v-model="phone_number" class="form-control mb-2"></td>
                     </tr>
 
                     <tr>
                         <td><label for="email">Email:</label></td>
-                        <td><input type="email" name="email" id="email" v-model="email"></td>
+                        <td><input type="email" name="email" id="email" v-model="email" class="form-control mb-2"></td>
                     </tr>
 
                     <tr>
                         <td><label for="gender">Gender:</label></td>
-                        <td><select v-model="gender" id="gender">
+                        <td><select v-model="gender" id="gender" class="form-control mb-2">
                                 <option disabled value="">Please select one</option>
                                 <option>Male</option>
                                 <option>Female</option>
@@ -38,35 +38,35 @@
                 </table>
             </div>
 
-            <div class="">
+            <div class="pt-4 border border-2 rounded p-4">
                 <h3>Additional Information</h3>
                 <table>
                     <tr>
                         <td><label for="medical_license">Medical License:</label></td>
-                        <td><input type="text" name="medical_license" class="w-100" id="medical_license" v-model="medical_license">
+                        <td><input type="text" name="medical_license" class="w-100 form-control mb-2" id="medical_license" v-model="medical_license">
                         </td>
                     </tr>
 
                     <tr>
                         <td><label for="medical_school_graduated">Medical School Graduated:</label></td>
-                        <td><input type="text" name="medical_school_graduated" class="w-100" id="medical_school_graduated" v-model="medical_school_graduated"></td>
+                        <td><input type="text" name="medical_school_graduated" class="w-100 form-control mb-2" id="medical_school_graduated" v-model="medical_school_graduated"></td>
                     </tr>
 
                     <tr>
                         <td><label for="year_graduated">Year Graduated:</label></td>
-                        <td><input type="date" class="w-100" name="year_graduated" id="year_graduated" v-model="year_graduated"></td>
+                        <td><input type="date" class="w-100 form-control mb-2" name="year_graduated" id="year_graduated" v-model="year_graduated"></td>
                     </tr>
 
                     <tr>
                         <td><label for="specialties">Specialties</label></td>
                         <td><textarea name="specialties" id="specialties" cols="30" rows="5"
-                                v-model="specialties"></textarea></td>
+                                v-model="specialties" class="form-control mb-2"></textarea></td>
                     </tr>
 
                     <tr>
                         <td><label for="career_summary">Career Summary:</label></td>
                         <td><textarea name="career_summary" id="" cols="30" rows="5"
-                                v-model="career_summary"></textarea></td>
+                                v-model="career_summary" class="form-control"></textarea></td>
                     </tr>
                 </table>
             </div>
