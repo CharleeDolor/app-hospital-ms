@@ -1,5 +1,5 @@
 <template>
-    <ul class="nav">
+    <ul class="nav p-2">
         <li class="nav-item">
             <a class="nav-link active" href="/dashboard">Home</a>
         </li>

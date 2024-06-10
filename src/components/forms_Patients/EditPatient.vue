@@ -12,7 +12,7 @@
                         <td>
                             <label for="email">Email:</label>
                         </td>
-                        <td><input type="email" v-model="email" id="email" class="form-control"></td>
+                        <td><input type="email" v-model="email" id="email" class="form-control" readonly></td>
                     </tr>
                     <tr>
                         <td><label for="birthday">Birthday:</label></td>

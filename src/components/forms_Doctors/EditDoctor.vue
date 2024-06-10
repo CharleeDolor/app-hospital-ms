@@ -24,7 +24,7 @@
 
                     <tr>
                         <td><label for="email">Email:</label></td>
-                        <td><input type="email" name="email" id="email" v-model="email" class="form-control mb-2"></td>
+                        <td><input type="email" name="email" id="email" v-model="email" class="form-control mb-2" readonly></td>
                     </tr>
 
                     <tr>

@@ -78,11 +78,9 @@
         </div>
     </div>
     <!-- end doctor panel -->
-
-
-
+    
     <!-- admin panel -->
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
+    <div class="container" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
         <table v-if="this.appointments.length != 0">
             <thead>
                 <th>Type</th>
@@ -100,6 +98,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="container" v-else>
+            <h3>Seems empty here</h3>
+        </div>
     </div>
     <!-- end admin panel -->
 
