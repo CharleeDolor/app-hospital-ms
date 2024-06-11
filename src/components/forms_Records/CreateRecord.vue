@@ -51,6 +51,9 @@ export default {
                 this.recommendations = '';
                 alert('New medical record is created.');
                 this.$router.push('/appointments');
+                } else {
+                    console.log(response)
+
             }
         }
     }
