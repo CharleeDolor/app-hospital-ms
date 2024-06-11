@@ -128,7 +128,6 @@ export default {
             try {
                 const response = await axios.put('/api/patients/' + this.$route.params.id, {
                     name: this.name,
-                    email: this.email,
                     birthday: this.birthday,
                     address: this.address,
                     gender: this.gender,
@@ -139,11 +138,11 @@ export default {
                     height: this.height,
                 });
 
-                if (response.status == 200) {
+                if ('errors' in response.data) {
+                    this.messages = response.data.message
+                } else {
                     alert('Patient details updated');
                     this.$router.push('/patients');
-                } else {
-                    this.messages = response.data.message
                 }
             } catch (error) {
                 console.error(error);

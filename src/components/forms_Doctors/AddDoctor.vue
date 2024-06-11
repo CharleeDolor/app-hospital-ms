@@ -154,7 +154,6 @@ export default {
     methods: {
         async addDoctor() {
             try {
-                console.log(this.year_graduated);
                 const response = await axios.post('/api/doctors/', {
                     name: this.name,
                     email: this.email,
@@ -169,7 +168,7 @@ export default {
                 });
 
                 if (response.status == 201) {
-                    alert('Doctor details updated');
+                    alert('Doctor details added');
 
                     this.name = '';
                     this.email = '';

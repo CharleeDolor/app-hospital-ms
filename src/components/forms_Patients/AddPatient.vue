@@ -157,7 +157,7 @@ export default {
 
                 if (response.status == 201) {
                     alert('Patiend details created');
-                    this.$router.go(-1);
+                    this.$router.push('/dashboard');
                 } else {
                     this.messages = response.data.message;
                 }

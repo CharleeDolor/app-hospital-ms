@@ -134,7 +134,6 @@ export default {
             try {
                 const response = await axios.put('/api/doctors/' + this.$route.params.id, {
                     name: this.name,
-                    email: this.email,
                     address: this.address,
                     phone_number: this.phone_number,
                     medical_license: this.medical_license,
@@ -145,7 +144,9 @@ export default {
                     career_summary: this.career_summary,
                 });
 
-                if (response.status == 200) {
+                if ('errors' in response.data) {
+                    this.messages = response.data.errors
+                } else {
                     alert('Doctor details updated');
                     
                     this.name = '';
@@ -159,9 +160,9 @@ export default {
                     this.specialties = '';
                     this.career_summary = '';
 
-                    this.$router.push('/doctors');
-                } else {
-                    this.messages = response.data.message
+                    var route = this.getRolesAndPermissions.roles[0] == 'admin' ? '/doctors' : '/dashboard';
+
+                    this.$router.push(route);
                 }
             } catch (error) {
                 console.log(error);
