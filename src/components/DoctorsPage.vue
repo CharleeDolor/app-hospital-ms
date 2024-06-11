@@ -7,7 +7,7 @@
         <h3>All Doctors</h3>
         <router-link to="/doctors/create" class="btn btn-success">Add Doctor</router-link>
         <div class="container">
-            <table class="table-bordered">
+            <table class="table-bordered" v-if="this.doctors.length != 0">
                 <thead class="">
                     <th>Name</th>
                     <th>Email</th>
@@ -36,6 +36,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div v-else>
+                <h3>Seems empty here.</h3>
+            </div>
         </div>
     </div>
     <!-- end admin panel -->

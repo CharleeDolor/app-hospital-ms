@@ -9,27 +9,37 @@
                 <table>
                     <tr>
                         <td><label for="name">Name:</label></td>
-                        <td><input type="text" name="name" v-model="name" id="name" class="form-control mb-2"></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('name')" class="error m-0">{{ this.messages['name'][0] }}</p>
+                            <input type="text" name="name" v-model="name" id="name" class="form-control mb-2"></td>
                     </tr>
 
                     <tr>
                         <td><label for="address">Address:</label></td>
-                        <td><input type="text" name="address" id="address" v-model="address" class="form-control mb-2"></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('address')" class="error m-0">{{ this.messages['address'][0] }}</p>
+                            <input type="text" name="address" id="address" v-model="address" class="form-control mb-2"></td>
                     </tr>
 
                     <tr>
                         <td><label for="phone_number">Phone Number:</label></td>
-                        <td><input type="text" name="phone_number" id="phone_number" v-model="phone_number" class="form-control mb-2"></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('phone_number')" class="error m-0">{{ this.messages['phone_number'][0] }}</p>
+                            <input type="text" name="phone_number" id="phone_number" v-model="phone_number" class="form-control mb-2"></td>
                     </tr>
 
                     <tr>
                         <td><label for="email">Email:</label></td>
-                        <td><input type="email" name="email" id="email" v-model="email" class="form-control mb-2" readonly></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('email')" class="error m-0">{{ this.messages['email'][0] }}</p>
+                            <input type="email" name="email" id="email" v-model="email" class="form-control mb-2" readonly></td>
                     </tr>
 
                     <tr>
                         <td><label for="gender">Gender:</label></td>
-                        <td><select v-model="gender" id="gender" class="form-control mb-2">
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('gender')" class="error m-0">{{ this.messages['gender'][0] }}</p>
+                            <select v-model="gender" id="gender" class="form-control mb-2">
                                 <option disabled value="">Please select one</option>
                                 <option>Male</option>
                                 <option>Female</option>
@@ -43,29 +53,39 @@
                 <table>
                     <tr>
                         <td><label for="medical_license">Medical License:</label></td>
-                        <td><input type="text" name="medical_license" class="w-100 form-control mb-2" id="medical_license" v-model="medical_license">
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('medical_license')" class="error m-0">{{ this.messages['medical_license'][0] }}</p>
+                            <input type="text" name="medical_license" class="w-100 form-control mb-2" id="medical_license" v-model="medical_license">
                         </td>
                     </tr>
 
                     <tr>
                         <td><label for="medical_school_graduated">Medical School Graduated:</label></td>
-                        <td><input type="text" name="medical_school_graduated" class="w-100 form-control mb-2" id="medical_school_graduated" v-model="medical_school_graduated"></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('medical_school_graduated')" class="error m-0">{{ this.messages['medical_school_graduated'][0] }}</p>
+                            <input type="text" name="medical_school_graduated" class="w-100 form-control mb-2" id="medical_school_graduated" v-model="medical_school_graduated"></td>
                     </tr>
 
                     <tr>
                         <td><label for="year_graduated">Year Graduated:</label></td>
-                        <td><input type="date" class="w-100 form-control mb-2" name="year_graduated" id="year_graduated" v-model="year_graduated"></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('year_graduated')" class="error m-0">{{ this.messages['year_graduated'][0] }}</p>
+                            <input class="form-control w-100" type="number" id="year_graduated" v-model="year_graduated"></td>
                     </tr>
 
                     <tr>
-                        <td><label for="specialties">Specialties</label></td>
-                        <td><textarea name="specialties" id="specialties" cols="30" rows="5"
+                        <td><label for="specialties">Specialization/s:</label></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('specialties')" class="error m-0">{{ this.messages['specialties'][0] }}</p>
+                            <textarea name="specialties" id="specialties" cols="30" rows="5"
                                 v-model="specialties" class="form-control mb-2"></textarea></td>
                     </tr>
 
                     <tr>
                         <td><label for="career_summary">Career Summary:</label></td>
-                        <td><textarea name="career_summary" id="" cols="30" rows="5"
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('career_summary')" class="error m-0">{{ this.messages['career_summary'][0] }}</p>
+                            <textarea name="career_summary" id="" cols="30" rows="5"
                                 v-model="career_summary" class="form-control"></textarea></td>
                     </tr>
                 </table>
@@ -105,6 +125,7 @@ export default {
             year_graduated: "",
             specialties: "",
             career_summary: "",
+            messages: []
         }
     },
 
@@ -139,6 +160,8 @@ export default {
                     this.career_summary = '';
 
                     this.$router.push('/doctors');
+                } else {
+                    this.messages = response.data.message
                 }
             } catch (error) {
                 console.log(error);
@@ -173,3 +196,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.error {
+    color: red;
+}
+</style>

@@ -109,7 +109,6 @@ export default {
     async beforeMount() {
         const response = await axios.get('/api/count');
         this.count = response.data.count;
-        console.log(this.count)
     },
 
     computed: {

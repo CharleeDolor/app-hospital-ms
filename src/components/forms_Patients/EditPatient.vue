@@ -8,17 +8,23 @@
                 <tbody>
                     <tr>
                         <td><label for="name">Name:</label></td>
-                        <td><input type="text" v-model="name" id="name" class="form-control"></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('name')" class="error m-0">{{ this.messages['name'][0] }}</p>
+                            <input type="text" v-model="name" id="name" class="form-control"></td>
                         <td>
                             <label for="email">Email:</label>
                         </td>
-                        <td><input type="email" v-model="email" id="email" class="form-control" readonly></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('email')" class="error m-0">{{ this.messages['email'][0] }}</p>
+                            <input type="email" v-model="email" id="email" class="form-control" readonly></td>
                     </tr>
                     <tr>
                         <td><label for="birthday">Birthday:</label></td>
                         <td><input type="date" v-model="birthday" id="birthday" class="form-control"></td>
                         <td><label for="gender">Gender:</label></td>
-                        <td><select v-model="gender" id="gender" class="form-control">
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('gender')" class="error m-0">{{ this.messages['gender'][0] }}</p>
+                            <select v-model="gender" id="gender" class="form-control">
                                 <option disabled value="">Please select one</option>
                                 <option>Male</option>
                                 <option>Female</option>
@@ -28,6 +34,7 @@
                     <tr>
                         <td><label for="marital_status">Marital Status:</label></td>
                         <td>
+                            <p v-if="this.messages.hasOwnProperty('marital_status')" class="error m-0">{{ this.messages['marital_status'][0] }}</p>
                             <select v-model="marital_status" id="marital_status" class="form-control">
                                 <option disabled value="">Please select one</option>
                                 <option>Single</option>
@@ -37,16 +44,15 @@
                             </select>
                         </td>
                         <td><label for="contact_number">Contact Number:</label></td>
-                        <td><input type="text" v-model="contact_number" id="contact_number" class="form-control"></td>
-                    </tr>
-
-                    <tr>
-                        
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('contact_number')" class="error m-0">{{ this.messages['name'][0] }}</p>
+                            <input type="text" v-model="contact_number" id="contact_number" class="form-control"></td>
                     </tr>
 
                     <tr>
                         <td><label for="blood_type">Blood Type:</label></td>
                         <td>
+                            <p v-if="this.messages.hasOwnProperty('blood_type')" class="error m-0">{{ this.messages['blood_type'][0] }}</p>
                             <select v-model="blood_type" id="blood_type" class="form-control">
                                 <option disabled value="">Please select one</option>
                                 <option>O+</option>
@@ -60,15 +66,21 @@
                             </select>
                         </td>
                         <td><label for="address">Address:</label></td>
-                        <td><textarea v-model="address" id="address" cols="20" rows="5" class="form-control"></textarea>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('address')" class="error m-0">{{ this.messages['address'][0] }}</p>
+                            <textarea v-model="address" id="address" cols="20" rows="5" class="form-control"></textarea>
                         </td>
                     </tr>
 
                     <tr>
                         <td><label for="weight">Weight in kg:</label></td>
-                        <td><input type="number" v-model="weight" id="weight" class="form-control"></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('weight')" class="error m-0">{{ this.messages['weight'][0] }}</p>
+                            <input type="number" v-model="weight" id="weight" class="form-control"></td>
                         <td><label for="height">Height in cm:</label></td>
-                        <td><input type="number" v-model="height" id="height" class="form-control"></td>
+                        <td>
+                            <p v-if="this.messages.hasOwnProperty('height')" class="error m-0">{{ this.messages['height'][0] }}</p>
+                            <input type="number" v-model="height" id="height" class="form-control"></td>
                     </tr>
                 </tbody>
             </table>
@@ -106,7 +118,8 @@ export default {
             contact_number: '',
             blood_type: '',
             weight: 0,
-            height: 0
+            height: 0,
+            messages: []
         };
     },
 
@@ -129,6 +142,8 @@ export default {
                 if (response.status == 200) {
                     alert('Patient details updated');
                     this.$router.push('/patients');
+                } else {
+                    this.messages = response.data.message
                 }
             } catch (error) {
                 console.error(error);
@@ -160,6 +175,10 @@ export default {
 </script>
 
 <style scoped>
+.error{
+    color: red;
+}
+
 .form-container {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     padding: 20px;
