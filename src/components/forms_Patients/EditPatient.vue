@@ -139,7 +139,7 @@ export default {
                 });
 
                 if ('errors' in response.data) {
-                    this.messages = response.data.message
+                    this.messages = response.data.errors
                 } else {
                     alert('Patient details updated');
                     this.$router.push('/patients');
