@@ -3,6 +3,9 @@ import Axios from 'axios';
 const axios = Axios.create({
     baseURL: "http://127.0.0.1:8000",
     withCredentials: true,
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+    }
 });
 
 axios.interceptors.request.use(config => {
@@ -35,5 +38,7 @@ axios.interceptors.response.use(null, (err) => {
             break;
     }
 })
+
+axios.get('/sanctum/csrf-cookie');
 
 export default axios;

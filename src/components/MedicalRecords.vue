@@ -10,7 +10,7 @@
         <NavBar></NavBar>
         <div class="panel">
           <!-- admin panel -->
-          <div v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
+          <div v-if="this.getRolesAndPermissions.roles == 'admin'">
             <div v-if="'message' in this.records">
               <h3>Seems empty here!</h3>
             </div>
@@ -41,9 +41,9 @@
           </div>
         </div>
           <!-- end admin panel -->
-  
+
           <!-- patient panel -->
-          <div v-if="this.getRolesAndPermissions.roles[0] == 'patient'">
+          <div v-if="this.getRolesAndPermissions.roles == 'patient'">
             <div v-if="'message' in this.records">
               <h3>Seems empty here!</h3>
             </div>
@@ -72,9 +72,9 @@
             </div>
           </div>
           <!-- end patient panel -->
-  
+
           <!-- doctor panel -->
-          <div v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">
+          <div v-if="this.getRolesAndPermissions.roles == 'doctor'">
             <div v-if="'message' in this.records">
               <h3>Seems empty here!</h3>
             </div>
@@ -111,37 +111,37 @@
           <!-- end doctor panel -->
         </div>
   </template>
-  
+
   <script>
   import NavBar from '@/components/NavBar.vue'
   import axios from '@/lib/axios'
-  
+
   export default {
     components: {
       NavBar
     },
-  
+
     computed: {
       getRolesAndPermissions() {
         return this.$store.getters.getRolesAndPermissions
       }
     },
-  
+
     data() {
       return {
         records: [],
       }
     },
-  
+
     async beforeMount() {
       try {
         const response = await axios.get('/api/records');
         this.records = response.data;
-  
+
         if ("message" in this.records) {
           this.records = response.data;
         } else {
-          console.log(this.records)
+          console.log(response);
         }
       } catch (error) {
         console.error("Error fetching records:", error);
@@ -149,7 +149,7 @@
     },
   }
   </script>
-  
+
   <style scoped>
   .background-image {
     display: flex;
@@ -162,7 +162,7 @@
     overflow: hidden;
     justify-content: center;
   }
-  
+
   .wrapper {
     width: 90%;
     max-width: 1200px;
@@ -175,19 +175,19 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .header {
     width: 100%;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
   }
-  
+
   .logo {
     width: 100px;
     margin-right: 20px;
   }
-  
+
   .logo img {
     width: 100%;
     height: 100px;
@@ -198,7 +198,7 @@
                 8px 8px 15px #a7aaa7,
                 -8px -8px 15px #fff;
   }
-  
+
   .name {
     font-weight: 600;
     font-size: 1.8rem;
@@ -206,7 +206,7 @@
     color: #555;
     text-align: center;
   }
-  
+
   .panel {
     width: 100%;
     background-color: #fff;
@@ -214,7 +214,7 @@
     border-radius: 15px;
     box-shadow: 13px 13px 20px #cbced1;
   }
-  
+
   h3 {
     font-size: 1.5rem;
     color: #333;
@@ -232,11 +232,11 @@
     border-collapse: collapse;
     margin-bottom: 20px;
   }
-  
+
   thead {
     background-color: #f4f4f4;
   }
-  
+
   thead th {
     padding: 10px;
     text-align: left;
@@ -244,23 +244,23 @@
     font-size: 1rem;
     text-align: center;
   }
-  
-  
+
+
   tbody tr {
     transition: background-color 0.2s;
   }
-  
+
   tbody tr:hover {
     background-color: #f1f1f1;
   }
- 
+
   tbody td {
     padding: 10px;
     border-bottom: 1px solid #ccc;
     font-size: 0.9rem;
     text-align: center;
   }
-  
+
   .wrapper .btn-edit {
     align-items: center;
     font-size: 18px;
@@ -279,50 +279,50 @@
     color: black;
     transform: scale(1.02);
   }
-  
+
   .wrapper a {
     text-decoration: none;
     font-size: 1rem;
     color: rgb(5, 99, 193);
   }
-  
+
   .wrapper a:hover {
     text-decoration: underline;
     transform: scale(1.1);
     color: #039BE5;
   }
-  
+
   @media(max-width: 768px) {
     .wrapper {
       padding: 20px;
     }
-  
+
     .panel {
       padding: 15px;
     }
-  
+
     .name {
       font-size: 1.5rem;
     }
-  
+
     table {
       font-size: 0.9rem;
     }
   }
-  
+
   @media(max-width: 768px) {
     .wrapper {
       padding: 20px;
     }
-  
+
     .panel {
       padding: 15px;
     }
-  
+
     .name {
       font-size: 1.5rem;
     }
-  
+
     table {
       font-size: 0.9rem;
     }
@@ -332,18 +332,17 @@
       width: 80px;
       height: 80px;
     }
-  
+
     .name {
       font-size: 1.2rem;
     }
-  
+
     table {
       font-size: 0.8rem;
     }
-  
+
     .btn {
       font-size: 16px;
     }
   }
   </style>
-  

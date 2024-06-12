@@ -3,7 +3,7 @@
     <h1>Doctors</h1>
 
     <!-- admin panel -->
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles == 'admin'">
         <h3>All Doctors</h3>
         <router-link to="/doctors/create" class="btn btn-success">Add Doctor</router-link>
         <div class="container">
@@ -44,7 +44,7 @@
     <!-- end admin panel -->
 
     <!-- patient panel -->
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'patient'">
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles == 'patient'">
         <h3>All Doctors</h3>
         <table class="table-bordered">
             <thead class="">

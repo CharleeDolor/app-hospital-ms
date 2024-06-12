@@ -3,7 +3,7 @@
     <h1>Appointments</h1>
 
     <!-- patient panel -->
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'patient'">
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles == 'patient'">
         <div class="container" v-if="this.appointments.length == 0">
             <h3>Seems empty here.</h3>
             <button class="btn btn-success" @click="gotoCreateAppointment">Click here to create an appointment</button>
@@ -42,7 +42,7 @@
     <!-- end patient panel -->
 
     <!-- doctor panel -->
-    <div v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">
+    <div v-if="this.getRolesAndPermissions.roles == 'doctor'">
         <h4 v-if="this.appointments.length == 0">Seems empty here. Let's wait for the patients to create an appointment
         </h4>
 
@@ -80,7 +80,7 @@
     <!-- end doctor panel -->
     
     <!-- admin panel -->
-    <div class="container" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
+    <div class="container" v-if="this.getRolesAndPermissions.roles == 'admin'">
         <table v-if="this.appointments.length != 0">
             <thead>
                 <th>Type</th>

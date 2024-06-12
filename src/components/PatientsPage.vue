@@ -3,7 +3,7 @@
     <h1>Patients</h1>
 
     <!-- admin panel -->
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles == 'admin'">
         <h3>All patients</h3>
 
         <button class="btn btn-success" @click="gotoAddPatient">Add Patient</button>

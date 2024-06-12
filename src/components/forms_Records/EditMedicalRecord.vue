@@ -107,6 +107,7 @@ export default {
   },
 
   async created() {
+    console.log( await axios.get('/sanctum/csrf-cookie'))
     await this.fetchMedicalRecord();
   }
 }

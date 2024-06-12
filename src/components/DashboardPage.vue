@@ -3,7 +3,7 @@
     <h1>Dashboard</h1>
 
     <!-- admin panel -->
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles == 'admin'">
         <h1>Welcome Admin</h1>
         <div class="d-flex align-items-center justify-content-center flex-column gap-3">
             <h3>Statistics</h3>
@@ -39,7 +39,7 @@
     <!-- end admin panel -->
 
     <!-- patient panel -->
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'patient'">
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles == 'patient'">
         <div class="d-flex align-items-center justify-content-center flex-column gap-3">
             <table>
                 <tr>
@@ -67,7 +67,7 @@
     <!-- end patient panel -->
 
     <!-- doctor panel -->
-    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">
+    <div class="container-fluid" v-if="this.getRolesAndPermissions.roles == 'doctor'">
         <div class="d-flex align-items-center justify-content-center flex-column gap-3">
             <table>
                 <tr>
@@ -109,6 +109,7 @@ export default {
     async beforeMount() {
         const response = await axios.get('/api/count');
         this.count = response.data.count;
+        console.log(this.getRolesAndPermissions);
     },
 
     computed: {

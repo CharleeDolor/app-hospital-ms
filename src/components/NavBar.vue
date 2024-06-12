@@ -3,16 +3,16 @@
         <li class="nav-item">
             <a class="nav-link active" href="/dashboard">Home</a>
         </li>
-        <li class="nav-item" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
+        <li class="nav-item" v-if="this.getRolesAndPermissions.roles == 'admin'">
             <a class="nav-link" href="/patients">Patients</a>
         </li>
-        <li class="nav-item" v-if="this.getRolesAndPermissions.roles[0] == 'admin'">
+        <li class="nav-item" v-if="this.getRolesAndPermissions.roles == 'admin'">
             <a class="nav-link" href="/doctors">Doctors</a>
         </li>
-        <li class="nav-item" v-if="this.getRolesAndPermissions.roles[0] == 'patient'">
+        <li class="nav-item" v-if="this.getRolesAndPermissions.roles == 'patient'">
             <button class="nav-link" @click="gotoPatientDetails">My Details</button>
         </li>
-        <li class="nav-item" v-if="this.getRolesAndPermissions.roles[0] == 'doctor'">
+        <li class="nav-item" v-if="this.getRolesAndPermissions.roles == 'doctor'">
             <button class="nav-link" @click="gotoDoctorDetails">Personal Information</button>
         </li>
         <li class="nav-item">
