@@ -14,17 +14,21 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(null, (err) => {
     switch (err.response?.status) {
+        case 400:
+            alert('Bad Request')
+            break;
+
         case 401:
             alert('Incorrect credentials')
+            break;
+
+        case 403:
+            alert('You are not allowed')
             break;
 
         case 500:
             alert('Something went wrong. Please try again')
             console.log(err)
-            break;
-
-        case 403:
-            alert('You are not allowed')
             break;
 
         default:

@@ -6,11 +6,13 @@
             <div class="container-fluid d-flex align-items-center justify-content-center flex-column">
                 <div class="mb-3">
                     <label for="diagnosis" class="form-label">Diagnosis</label>
+                    <p v-if="this.messages.hasOwnProperty('diagnosis')"> {{ this.messages['diagnosis'][0] }}</p>
                     <textarea class="form-control" id="diagnosis" rows="3" v-model="diagnosis"></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="recommendations" class="form-label">Recommendations</label>
+                    <p v-if="this.messages.hasOwnProperty('recommendations')"> {{ this.messages['recommendations'][0] }}</p>
                     <textarea class="form-control" id="recommendations" rows="3" v-model="recommendations"></textarea>
                 </div>
 
@@ -27,7 +29,8 @@ export default {
     data() {
         return {
             diagnosis: '',
-            recommendations: ''
+            recommendations: '',
+            messages: []
         }
     },
 
@@ -51,6 +54,8 @@ export default {
                 this.recommendations = '';
                 alert('New medical record is created.');
                 this.$router.push('/appointments');
+            } else {
+                this.messages = response.data.message
             }
         }
     }
