@@ -15,6 +15,7 @@
               <h3>Seems empty here!</h3>
             </div>
             <div v-else>
+              <div class="table-wrapper">
               <h3>All Records</h3>
               <table>
                 <thead>
@@ -38,6 +39,7 @@
               </table>
             </div>
           </div>
+        </div>
           <!-- end admin panel -->
   
           <!-- patient panel -->
@@ -218,7 +220,13 @@
     color: #333;
     margin-bottom: 20px;
   }
-  
+  .table-wrapper {
+  max-height: 400px; /* Adjust as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
   table {
     width: 100%;
     border-collapse: collapse;
@@ -234,7 +242,9 @@
     text-align: left;
     border-bottom: 2px solid #ccc;
     font-size: 1rem;
+    text-align: center;
   }
+  
   
   tbody tr {
     transition: background-color 0.2s;
@@ -243,11 +253,12 @@
   tbody tr:hover {
     background-color: #f1f1f1;
   }
-  
+ 
   tbody td {
     padding: 10px;
     border-bottom: 1px solid #ccc;
     font-size: 0.9rem;
+    text-align: center;
   }
   
   .wrapper .btn-edit {
